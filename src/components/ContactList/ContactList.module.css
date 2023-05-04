@@ -1,0 +1,23 @@
+.element {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.listItem {
+  margin-left: 50px;
+}
+
+.btnDelete {
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 3px;
+  border: 1px solid rgb(187, 187, 187);
+  background-color: rgba(205, 205, 240, 0.477);
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.5s ease-out;
+}
+.btnDelete:hover,
+:focus {
+  background-color: rgba(254, 254, 255, 0.906);
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { getContacts, getFilter } from '../../redux/selectors.js';
 import css from './ContactList.module.css';
 import { deleteContact } from 'redux/contactSlicer';
 import { selectFilter, selectContacts } from 'redux/selectors';
@@ -11,11 +10,8 @@ const ContactsList = ({ storage }) => {
   const dispatch = useDispatch();
 
   const filterStatus = filterValue.status;
-  const filterContact = contacts.filter(
-    contact => contact.name.toLowerCase().includes(filterStatus)
-    // contact.number
-    //   .replace(/-|\s/g, '')
-    //   .includes(filterValue.replace(/-|\s/g, ''))
+  const filterContact = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filterStatus)
   );
 
   const handledDelete = id => {

@@ -11,13 +11,6 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    // const contact = {
-    //   name: form.name.value,
-    //   number: form.number.value,
-    // };
-
-    // console.log('Form name:', form.name.value);
-    // console.log('Form number:', form.phone.value);
 
     let isContact;
 

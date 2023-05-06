@@ -14,7 +14,7 @@ export const filterContactsSlice = createSlice({
 
 export const { setFilterStatus } = filterContactsSlice.actions;
 
-export default filterContactsSlice.reducer;
+export const filterReducer = filterContactsSlice.reducer;
 
 // import { createReducer } from '@reduxjs/toolkit';
 // import { createAction } from '@reduxjs/toolkit';

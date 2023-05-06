@@ -12,11 +12,10 @@ const ContactsList = ({ storage }) => {
 
   const filterStatus = filterValue.status;
   const filterContact = contacts.filter(
-    contact =>
-      contact.name.toLowerCase().includes(filterStatus) ||
-      contact.number
-        .replace(/-|\s/g, '')
-        .includes(filterValue.replace(/-|\s/g, ''))
+    contact => contact.name.toLowerCase().includes(filterStatus)
+    // contact.number
+    //   .replace(/-|\s/g, '')
+    //   .includes(filterValue.replace(/-|\s/g, ''))
   );
 
   const handledDelete = id => {

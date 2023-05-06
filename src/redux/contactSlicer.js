@@ -1,26 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const endpointApi = 'https://6454036cc18adbbdfead9cc5.mockapi.io/contacts/';
-
-const initialState = {
-  contacts: [],
-  query: '',
-  error: null,
-  status: 'idle',
-  isLoading: false,
-};
+axios.defaults.baseURL = 'https://6454036cc18adbbdfead9cc5.mockapi.io/contacts';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
-  const response = await axios.get(apiEndpoint);
+  const response = await axios.get('/contacts');
   return response.data;
 });
 
 export const addContact = createAsyncThunk(
-  'contacts/addContacts',
+  'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
-      const response = await axios.post(endpointApi, contact);
+      const response = await axios.post('/contacts', contact);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -29,11 +21,11 @@ export const addContact = createAsyncThunk(
 );
 
 export const deleteContact = createAsyncThunk(
-  'contact/deleteContacts',
-  async contactId => {
+  'contact/deleteContact',
+  async (contactId, thunkAPI) => {
     try {
-      await axios.delete(`${endpointApi}/${contactId}`);
-      return contactId;
+      const response = await axios.delete(`/contacts/${contactId}`);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -42,7 +34,11 @@ export const deleteContact = createAsyncThunk(
 
 export const contactsSlice = createSlice({
   name: 'contacts',
-  initialState,
+  initialState: {
+    contacts: [],
+    error: null,
+    isLoading: false,
+  },
   extraReducers: {
     [fetchContacts.pending]: state => {
       state.isLoading = true;
@@ -68,25 +64,25 @@ export const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [removeContact.pending]: state => {
+    [deleteContact.pending]: state => {
       state.isLoading = true;
     },
-    [removeContact.fulfilled]: (state, action) => {
+    [deleteContact.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
       const index = state.contacts.findIndex(
         contact => contact.id === action.payload.id
       );
-      state.items.splice(index, 1);
+      state.contacts.splice(index, 1);
     },
-    [removeContact.rejected]: (state, action) => {
+    [deleteContact.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
 
-export default contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;
 
 // extraReducers: builder => {
 //   builder

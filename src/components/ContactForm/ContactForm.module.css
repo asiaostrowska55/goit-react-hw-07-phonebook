@@ -21,6 +21,7 @@
 .input:focus {
   outline: none;
   border: 1px solid rgb(247, 249, 255);
+  color: black;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 4px 3px rgba(65, 114, 248, 0.638);
 }

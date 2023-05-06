@@ -17,7 +17,7 @@
   margin-left: 10px;
   transition: all 0.5s ease-out;
 }
-.btnDelete:hover,
-:focus {
+.btnDelete:hover {
   background-color: rgba(254, 254, 255, 0.906);
+  color: black;
 }
